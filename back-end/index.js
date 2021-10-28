@@ -5,7 +5,7 @@ const districtsRouter = require('./routes/districtsRouter');
 const datesRouter = require('./routes/datesRouter');
 const climatesRouter = require('./routes/climatesRouter');
 
-const { PORT } = process.env || 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(cors());

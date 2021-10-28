@@ -6,7 +6,7 @@ const validateClimatesData = require('../validators/climatesValidators');
 
 const climatesRouter = express.Router();
 
-climatesRouter.post('/', rescue(validateClimatesData, ClimatesController.create));
+climatesRouter.post('/', rescue(validateClimatesData), rescue(ClimatesController.create));
 climatesRouter.get('/', rescue(ClimatesController.getAll));
 climatesRouter.get('/:id', rescue(ClimatesController.getById));
 

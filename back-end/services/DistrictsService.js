@@ -1,6 +1,6 @@
 const DistrictsModel = require('../models/DistrictsModel');
 
-const create = async ({ districtName, state }) => DistrictsModel.create(
+const create = ({ districtName, state }) => DistrictsModel.create(
   { districtName, state },
 );
 

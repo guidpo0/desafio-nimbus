@@ -3,8 +3,8 @@ const DistrictsModel = require('../models/DistrictsModel');
 
 const create = async ({ dateName, districtId }) => {
   const districts = await DistrictsModel.getAll();
-  const existingDistrict = districts.some((district) => district.districtId === districtId);
 
+  const existingDistrict = districts.some((district) => district.district_id === districtId);
   if (!existingDistrict) {
     return {
       err: {

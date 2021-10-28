@@ -6,7 +6,7 @@ const validateDistrictsData = require('../validators/districtsValidators');
 
 const districtsRouter = express.Router();
 
-districtsRouter.post('/', rescue(validateDistrictsData, DistrictsController.create));
+districtsRouter.post('/', rescue(validateDistrictsData), rescue(DistrictsController.create));
 districtsRouter.get('/', rescue(DistrictsController.getAll));
 districtsRouter.get('/:id', rescue(DistrictsController.getById));
 

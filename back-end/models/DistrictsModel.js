@@ -1,19 +1,24 @@
 const mysqlServer = require('../connections/mysqlServer');
 
 const create = async ({ districtName, state }) => {
-  const xablau = mysqlServer.execute(
+  const [{ insertId }] = await mysqlServer.execute(
     'INSERT INTO Nimbus.Districts (district_name, state) VALUES (?,?)',
     [districtName, state],
   );
-  console.log(0);
-  return xablau;
+  return { id: insertId };
 };
 
-const getAll = async () => (mysqlServer.execute('SELECT * FROM Nimbus.Districts'));
+const getAll = async () => {
+  const [districts] = await mysqlServer.execute('SELECT * FROM Nimbus.Districts');
+  return districts;
+};
 
-const getById = async (id) => (
-  mysqlServer.execute('SELECT * FROM Nimbus.Districts WHERE date_id = ?', [id])
-);
+const getById = async (id) => {
+  const [districts] = await mysqlServer.execute(
+    'SELECT * FROM Nimbus.Districts WHERE district_id = ?', [id],
+  );
+  return districts[0];
+};
 
 module.exports = {
   create,

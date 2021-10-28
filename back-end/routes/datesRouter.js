@@ -6,7 +6,7 @@ const validateDatesData = require('../validators/datesValidators');
 
 const datesRouter = express.Router();
 
-datesRouter.post('/', rescue(validateDatesData, DatesController.create));
+datesRouter.post('/', rescue(validateDatesData), rescue(DatesController.create));
 datesRouter.get('/', rescue(DatesController.getAll));
 datesRouter.get('/:id', rescue(DatesController.getById));
 

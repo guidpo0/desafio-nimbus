@@ -3,12 +3,12 @@ const { CREATED_STATUS, OK_STATUS } = require('../helpers/HTTPCodes');
 
 const create = async (req, res, next) => {
   const { climateHour, climateRain, dateId } = req.body;
-  const { _id, err } = await ClimatesService.create(
+  const { id, err } = await ClimatesService.create(
     { climateHour, climateRain, dateId },
   );
   if (err) return next(err);
   return res.status(CREATED_STATUS).json({
-    _id, climateHour, climateRain, dateId,
+    id, climateHour, climateRain, dateId,
   });
 };
 

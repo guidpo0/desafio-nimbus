@@ -3,7 +3,7 @@ const DatesModel = require('../models/DatesModel');
 
 const create = async ({ climateHour, climateRain, dateId }) => {
   const dates = await DatesModel.getAll();
-  const existingDate = dates.some((date) => date.dateId === dateId);
+  const existingDate = dates.some((date) => date.date_id === dateId);
 
   if (!existingDate) {
     return {
