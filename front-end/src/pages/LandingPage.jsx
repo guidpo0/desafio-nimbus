@@ -64,14 +64,16 @@ function LandingPage() {
           data: dateSelectData,
         }}
       />
-      {
-        climateData.map((climate) => (
-          <ForeCast
-            forecast={climate}
-            date={dates.find(({ date_id: id }) => id === selectedDateId).date_name}
-          />
-        ))
-      }
+      <div className="cards-container">
+        {
+          climateData.map((climate) => (
+            <ForeCast
+              forecast={climate}
+              date={dates.find(({ date_id: id }) => id === selectedDateId).date_name}
+            />
+          ))
+        }
+      </div>
       <div className="subtitles-container">
         <h3 className="subtitles-title">Legenda</h3>
         <div>

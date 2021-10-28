@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './ForecastCard.css';
 
 function ForecastCard({ forecast, date }) {
   const {
@@ -22,13 +23,14 @@ function ForecastCard({ forecast, date }) {
   }
 
   return (
-    <div>
+    <div className="card-container">
       <p>
         {date}
         {' '}
         -
         {' '}
         {hour}
+        h
       </p>
       <h3 style={rainStyle(rain)}>{formatRain(rain)}</h3>
     </div>
