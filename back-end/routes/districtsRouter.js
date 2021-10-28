@@ -1,7 +1,7 @@
 const rescue = require('express-rescue');
 const express = require('express');
 const DistrictsController = require('../controllers/DistrictsController');
-const DistrictsErrorController = require('../controllers/errors/DistrictsErrorController');
+const ErrorController = require('../controllers/ErrorController');
 const validateDistrictsData = require('../validators/districtsValidators');
 
 const districtsRouter = express.Router();
@@ -10,6 +10,6 @@ districtsRouter.post('/', rescue(validateDistrictsData, DistrictsController.crea
 districtsRouter.get('/', rescue(DistrictsController.getAll));
 districtsRouter.get('/:id', rescue(DistrictsController.getById));
 
-districtsRouter.use(DistrictsErrorController);
+districtsRouter.use(ErrorController);
 
 module.exports = districtsRouter;

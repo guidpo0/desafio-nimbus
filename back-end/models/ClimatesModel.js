@@ -1,37 +1,38 @@
 const { ObjectId } = require('mongodb');
-const mongoConnection = require('./connection');
+const mongoConnection = require('../connections/mysqlServer');
 
-const create = async ({ name, quantity }) => {
-  const productsCollection = await mongoConnection.getConnection()
-    .then((db) => db.collection('products'));
-  const { insertedId: _id } = await productsCollection
-    .insertOne({ name, quantity });
+const create = async (products) => {
+  const salesCollection = await mongoConnection.getConnection()
+    .then((db) => db.collection('sales'));
+  const { insertedId: _id } = await salesCollection
+    .insertOne({ itensSold: products });
   return {
     _id,
+    itensSold: products,
   };
 };
 
 const getAll = async () => (
   mongoConnection.getConnection().then(
-    (db) => db.collection('products').find().toArray(),
+    (db) => db.collection('sales').find().toArray(),
   )
 );
 
 const getById = async (_id) => {
   if (ObjectId.isValid(_id)) {
     return mongoConnection.getConnection().then(
-      (db) => db.collection('products').findOne(ObjectId(_id)),
+      (db) => db.collection('sales').findOne(ObjectId(_id)),
     );
   }
   return null;
 };
 
-const update = async ({ _id, name, quantity }) => {
+const update = async ({ _id, itensSold }) => {
   if (ObjectId.isValid(_id)) {
     return mongoConnection.getConnection().then(
-      (db) => db.collection('products').updateOne(
+      (db) => db.collection('sales').updateOne(
         { _id: ObjectId(_id) },
-        { $set: { name, quantity } },
+        { $set: { itensSold } },
       ),
     ).then(() => getById(_id));
   }
@@ -40,12 +41,12 @@ const update = async ({ _id, name, quantity }) => {
 
 const remove = async (_id) => {
   if (ObjectId.isValid(_id)) {
-    const product = await getById(_id);
+    const sale = await getById(_id);
     return mongoConnection.getConnection().then(
-      (db) => db.collection('products').deleteOne(
+      (db) => db.collection('sales').deleteOne(
         { _id: ObjectId(_id) },
       ),
-    ).then(() => product);
+    ).then(() => sale);
   }
   return null;
 };
