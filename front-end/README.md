@@ -1,70 +1,184 @@
-# Getting Started with Create React App
+### Informações Gerais
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Projeto desenvolvido em grupo durante formação em desenvolvedor Web Full Stack pela Trybe.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+# Boas vindas ao repositório do projeto de Receitas!
 
-### `npm start`
+Essa aplicação têm a intenção de proporcionar ao(à) usuário(a) acesso à diversas receitas diferentes para que seja explorado seu potencial culinário! Após fazer seu login você será direcionado(a) à página principal de receitas de comidas, onde é possível utilizar filtros para pesquisar comidas por suas categorias, nome, ingredientes ou primeira letra.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+No menu inferior é possível selecionar a página principal de bebidas que possui as mesmas funcionalidades da de comida. Também no menu inferior é possível selecionar o campo de explorar, desse modo você poderá explorar comidas ou bebidas pelos seus ingredientes ou área, ou ainda pedir para ser surpreendido(a) por uma receita aleatória!
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Após selecionar uma receita você será direcionado(a) à página de detalhes dessa receita, onde poderá ver instruções e informações, caso queira realizar esta receita é só clicar no botão ao fim da página que um checklist dos ingredientes ficará a sua disposição!
 
-### `npm test`
+No menu superior da aplicação você terá acesso ao seu perfil, onde é possível verificar seu login, suas receitas feitas e suas receitas favoritas!
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Lembrando que esta aplicação corresponde aos meus esforços e dos meus colegas para melhorarmos nossas hard skills e soft skills sinta-se à vontade para explorá-la! Feedbacks construtivos são sempre bem vindos!
 
-### `npm run build`
+Abaixo você poderá encontrar mais informações técnicas sobre este projeto.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Sumário
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [Habilidades](#habilidades)
+- [Intruções para fazer o fork do repositório](#intruções-para-fazer-o-fork-do-repositório)
+- [Informações do projeto](#informações-do-projeto)
+  - [Linter](#linter)
+  - [Testes](#testes)
+  - [API's](#apis)
+    - [TheMealDB API](#themealdb-api)
+    - [The CockTailDB API](#the-cocktaildb-api)
+  - [Rotas](#rotas)
+  - [localStorage](#localStorage)
+  - [Biblioteca clipboard-copy](#biblioteca-clipboard-copy)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# Habilidades
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Nesse projeto, fui capaz de:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+  - Utilizar a Context API do React para gerenciar estado
+  - Utilizar o React Hook useState
+  - Utilizar o React Hook useContext
+  - Utilizar o React Hook useEffect
+  - Utilizar o React Router Dom
+  - Utilizar componentes funcionais
+  - Utilizar RTL e Jest para escrever testes
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+# Instruções para fazer o fork do repositório
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+1. Faça o fork do repositório
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Instale as dependências e inicialize o projeto
+  * Instale as dependências:
+    * `npm install`
+  * Inicialize o projeto:
+    * `npm start`
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Informações do projeto
 
-### Analyzing the Bundle Size
+### Linter
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Para garantir a qualidade do código de forma a tê-lo mais legível, de mais fácil manutenção e seguindo as boas práticas de desenvolvimento foi utilizado neste projeto o linter `ESLint`.
 
-### Making a Progressive Web App
+### Testes
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Para garantir a estabilidade da aplicação foram desenvolvidos testes juntamente com a aplicação de forma que alcancem uma cobertura de 90% do código, para isso foram utilizadas as bibliotecas Jest e React Testing Library.
 
-### Advanced Configuration
+## APIs
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### TheMealDB API
 
-### Deployment
+Para as receitas de comidas foi utilizado o [TheMealDB](https://www.themealdb.com/) é um banco de dados aberto, mantido pela comunidade, com receitas e ingredientes de todo o mundo.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Os end-points são bastante ricos, você pode [vê-los aqui](https://www.themealdb.com/api.php)
 
-### `npm run build` fails to minify
+### The CockTailDB API
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Para as receitas de bebidas foi utilizada a The CockTailDB API, banco de dados bem similar (inclusive mantida pela mesma entidade) a TheMealDB API, só que focado em bebidas.
+
+Os end-points também são bastante ricos, você pode [vê-los aqui](https://www.thecocktaildb.com/api.php)
+
+---
+
+### Rotas
+
+As rotas utilizadas na aplicação são as seguintes:
+
+* Tela de login: `/`;
+* Tela principal de receitas de comidas: `/comidas`;
+* Tela principal de receitas de bebidas: `/bebidas`;
+* Tela de detalhes de uma receita de comida: `/comidas/{id-da-receita}`;
+* Tela de detalhes de uma receita de bebida: `/bebidas/{id-da-receita}`;
+* Tela de receita em processo de comida: `/comidas/{id-da-receita}/in-progress`;
+* Tela de receita em processo de bebida: `/bebidas/{id-da-receita}/in-progress`;
+* Tela de explorar: `/explorar`;
+* Tela de explorar comidas: `/explorar/comidas`;
+* Tela de explorar bebidas: `/explorar/bebidas`;
+* Tela de explorar comidas por ingrediente: `/explorar/comidas/ingredientes`;
+* Tela de explorar bebidas por ingrediente: `/explorar/bebidas/ingredientes`;
+* Tela de explorar comidas por local de origem: `/explorar/comidas/area`;
+* Tela de perfil: `/perfil`;
+* Tela de receitas feitas: `/receitas-feitas`;
+* Tela de receitas favoritas: `/receitas-favoritas`.
+
+### `localStorage`
+
+O uso de `localStorage` é necessário para que as informações não se percam caso a pessoa atualize a página.
+Neste projeto esses valores foram usados para iniciar o context da aplicação.
+
+As seguintes informações são salvas no `localStorage` do navegador:
+
+* a chave `mealsToken` que contém a seguinte estrutura:
+```
+1
+```
+
+* a chave `cocktailsToken` que contém  a seguinte estrutura:
+```
+1
+```
+
+* a chave `user` que contém  a seguinte estrutura:
+```
+{
+    email: email-da-pessoa
+}
+```
+
+* a chave `doneRecipes` que contém  a seguinte estrutura:
+```
+[{
+    id: id-da-receita,
+    type: comida-ou-bebida,
+    area: area-da-receita-ou-texto-vazio,
+    category: categoria-da-receita-ou-texto-vazio,
+    alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+    name: nome-da-receita,
+    image: imagem-da-receita,
+    doneDate: quando-a-receita-foi-concluida,
+    tags: array-de-tags-da-receita-ou-array-vazio
+}]
+```
+
+* a chave `favoriteRecipes` que contém  a seguinte estrutura:
+```
+[{
+    id: id-da-receita,
+    type: comida-ou-bebida,
+    area: area-da-receita-ou-texto-vazio,
+    category: categoria-da-receita-ou-texto-vazio,
+    alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
+    name: nome-da-receita,
+    image: imagem-da-receita
+}]
+```
+
+* a chave `inProgressRecipes` que contém  a seguinte estrutura:
+```
+{
+    cocktails: {
+        id-da-bebida: [lista-de-ingredientes-utilizados],
+        ...
+    },
+    meals: {
+        id-da-comida: [lista-de-ingredientes-utilizados],
+        ...
+    }
+}
+```
+
+### Biblioteca `clipboard-copy`
+
+Para os componentes que contêm a funcionalidade de favoritar pratos ou bebidas, foi necessário utilizar a biblioteca `clipboard-copy` para copiar as informações da receita.
+
+Para mais informações, consulte a [documentação](https://www.npmjs.com/package/clipboard-copy)
+
+---
