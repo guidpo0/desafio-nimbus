@@ -1,59 +1,22 @@
-const { ObjectId } = require('mongodb');
-const mongoConnection = require('../connections/mysqlServer');
+const mysqlServer = require('../connections/mysqlServer');
 
-const create = async ({ name, quantity }) => {
-  const productsCollection = await mongoConnection.getConnection()
-    .then((db) => db.collection('products'));
-  const { insertedId: _id } = await productsCollection
-    .insertOne({ name, quantity });
-  return {
-    _id,
-  };
+const create = async ({ dateName, districtId }) => {
+  const xablau = mysqlServer.execute(
+    'INSERT INTO Nimbus.Dates (date_name, district_id) VALUES (?,?)',
+    [dateName, districtId],
+  );
+  console.log(0);
+  return xablau;
 };
 
-const getAll = async () => (
-  mongoConnection.getConnection().then(
-    (db) => db.collection('products').find().toArray(),
-  )
+const getAll = async () => (mysqlServer.execute('SELECT * FROM Nimbus.Dates'));
+
+const getById = async (id) => (
+  mysqlServer.execute('SELECT * FROM Nimbus.Dates WHERE date_id = ?', [id])
 );
-
-const getById = async (_id) => {
-  if (ObjectId.isValid(_id)) {
-    return mongoConnection.getConnection().then(
-      (db) => db.collection('products').findOne(ObjectId(_id)),
-    );
-  }
-  return null;
-};
-
-const update = async ({ _id, name, quantity }) => {
-  if (ObjectId.isValid(_id)) {
-    return mongoConnection.getConnection().then(
-      (db) => db.collection('products').updateOne(
-        { _id: ObjectId(_id) },
-        { $set: { name, quantity } },
-      ),
-    ).then(() => getById(_id));
-  }
-  return null;
-};
-
-const remove = async (_id) => {
-  if (ObjectId.isValid(_id)) {
-    const product = await getById(_id);
-    return mongoConnection.getConnection().then(
-      (db) => db.collection('products').deleteOne(
-        { _id: ObjectId(_id) },
-      ),
-    ).then(() => product);
-  }
-  return null;
-};
 
 module.exports = {
   create,
   getAll,
   getById,
-  update,
-  remove,
 };
