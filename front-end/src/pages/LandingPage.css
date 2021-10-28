@@ -7,6 +7,7 @@
   align-items: center;
   justify-content: center;
   color: white;
+  text-align: center;
 }
 
 .landing-page-title {
@@ -18,6 +19,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 0.6em;
   padding: 50px;
 }
 
@@ -28,7 +30,7 @@
 .subtitles-container div {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   padding: 10px;
 }
@@ -46,4 +48,11 @@
   flex-wrap: wrap;
   justify-content: center;
   margin: 30px 20px 0 20px;
+}
+
+@media only screen and ( min-width : 768px ) {
+
+  .subtitles-container {
+    font-size: 1em;
+  }
 }
