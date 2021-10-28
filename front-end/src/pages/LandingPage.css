@@ -1,0 +1,42 @@
+.landing-page-container {
+  background-color: rgba(26, 5, 5, 0.904);
+  min-height: 100vh;
+  min-width: 100wh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.landing-page-title {
+  margin: 50px 20px;
+}
+
+.subtitles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+.subtitles-title {
+  margin: 10px;
+}
+
+.subtitles-container div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.subtitles-container div p {
+  padding: 5px 20px;
+}
+
+.subtitles-container div p span {
+  font-weight: 700;
+}
