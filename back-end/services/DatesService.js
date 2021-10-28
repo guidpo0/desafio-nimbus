@@ -10,7 +10,7 @@ const {
   validateSaleId,
   validateQuantitiesToCreate,
   validateQuantitiesToUpdate,
-} = require('./validators/salesValidators');
+} = require('../validators/climatesValidators');
 
 const create = async (products) => {
   const { err: idError } = await validateProductsIds(products);
@@ -34,7 +34,7 @@ const update = async ({ _id, itensSold }) => {
   if (productIdError) return { err: productIdError };
 
   const { err: saleIdError } = await validateSaleId(_id);
-  if (saleIdError) return { err: saleIdError }; 
+  if (saleIdError) return { err: saleIdError };
 
   const { err: quantityError } = await validateQuantitiesToUpdate(_id, itensSold);
   if (quantityError) return { err: quantityError };
