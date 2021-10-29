@@ -23,6 +23,9 @@ function LandingPage() {
   const { dateId: selectDateValue } = dates.find(
     ({ dateId }) => dateId === selectedDateId,
   ) || { dateId: 0 };
+  const { dateName: foreCastDate } = dates.find(
+    ({ dateId }) => dateId === selectedDateId,
+  ) || { dateName: '' };
 
   useEffect(() => {
     const datesAvailable = dates.filter(
@@ -72,7 +75,7 @@ function LandingPage() {
           climateData.map((climate) => (
             <ForeCast
               forecast={climate}
-              date={dates.find(({ dateId }) => dateId === selectedDateId).dateName}
+              date={foreCastDate}
             />
           ))
         }
