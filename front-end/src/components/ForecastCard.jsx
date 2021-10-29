@@ -4,8 +4,8 @@ import './ForecastCard.css';
 
 function ForecastCard({ forecast, date }) {
   const {
-    climate_hour: hour,
-    climate_rain: rain,
+    climateHour,
+    climateRain,
   } = forecast;
 
   function formatRain(value) {
@@ -29,18 +29,18 @@ function ForecastCard({ forecast, date }) {
         {' '}
         -
         {' '}
-        {hour}
+        {climateHour}
         h
       </p>
-      <h3 style={rainStyle(rain)}>{formatRain(rain)}</h3>
+      <h3 style={rainStyle(climateRain)}>{formatRain(climateRain)}</h3>
     </div>
   );
 }
 
 ForecastCard.propTypes = {
   forecast: PropTypes.shape({
-    climate_hour: PropTypes.string,
-    climate_rain: PropTypes.string,
+    climateHour: PropTypes.string,
+    climateRain: PropTypes.string,
   }).isRequired,
   date: PropTypes.string.isRequired,
 };

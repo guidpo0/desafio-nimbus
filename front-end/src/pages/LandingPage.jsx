@@ -6,36 +6,43 @@ import './LandingPage.css';
 
 function LandingPage() {
   const { dates, climates, districts } = useContext(DataContext);
-  const [selectedDistrictId, setSelectedDistrictId] = useState(districts[0].district_id);
-  const [selectableDates, setSelectableDates] = useState([]);
-  const [selectedDateId, setSelectedDateId] = useState(1);
-  const [climateData, setClimateData] = useState([]);
+  const [selectedDistrictId, setSelectedDistrictId] = useState(districts[0].districtId);
+  const [selectableDates, setSelectableDates] = useState(dates);
+  const [selectedDateId, setSelectedDateId] = useState(dates[0].dateId);
+  const [climateData, setClimateData] = useState(climates);
 
-  const districtSelectData = districts.map(
-    ({ district_name: name, district_id: id }) => ({ name, id }),
+  const selectDistricData = districts.map(
+    ({ districtName: name, districtId: id }) => ({ name, id }),
   );
-  const dateSelectData = selectableDates.map(
-    ({ date_name: name, date_id: id }) => ({ name, id }),
+  const { districtId: selectDistrictValue } = districts.find(
+    ({ districtId }) => districtId === selectedDistrictId,
+  ) || { districtId: 0 };
+  const selectDateData = selectableDates.map(
+    ({ dateName: name, dateId: id }) => ({ name, id }),
   );
+  const { dateId: selectDateValue } = dates.find(
+    ({ dateId }) => dateId === selectedDateId,
+  ) || { dateId: 0 };
 
   useEffect(() => {
     const datesAvailable = dates.filter(
-      (date) => date.district_id === selectedDistrictId,
+      (date) => date.districtId === selectedDistrictId,
     );
+    const { dateId: firstDateAvailableId } = datesAvailable[0] || { dateId: 0 };
     const currentClimate = climates.filter(
-      ({ date_id: id }) => id === datesAvailable[0].date_id,
+      ({ dateId }) => dateId === firstDateAvailableId,
     );
     setSelectableDates(datesAvailable);
-    setSelectedDateId(datesAvailable[0].date_id);
+    setSelectedDateId(firstDateAvailableId);
     setClimateData(currentClimate);
   }, [selectedDistrictId, dates, climates]);
 
   useEffect(() => {
-    setSelectedDistrictId(districts[0].district_id);
+    setSelectedDistrictId(districts[0].districtId);
   }, [districts]);
 
   useEffect(() => {
-    const currentClimate = climates.filter(({ date_id: id }) => id === selectedDateId);
+    const currentClimate = climates.filter(({ dateId }) => dateId === selectedDateId);
     setClimateData(currentClimate);
   }, [selectedDateId]);
 
@@ -46,22 +53,18 @@ function LandingPage() {
         config={{
           htmlFor: 'district',
           labelText: 'Selecione o bairro',
-          selectedValue: districts.find(
-            ({ district_id: id }) => id === selectedDistrictId,
-          ).district_id,
+          selectedValue: selectDistrictValue,
           setSelectedValue: setSelectedDistrictId,
-          data: districtSelectData,
+          data: selectDistricData,
         }}
       />
       <Select
         config={{
           htmlFor: 'date',
           labelText: 'Selecione a data',
-          selectedValue: dates.find(
-            ({ date_id: id }) => id === selectedDateId,
-          ).date_id,
+          selectedValue: selectDateValue,
           setSelectedValue: setSelectedDateId,
-          data: dateSelectData,
+          data: selectDateData,
         }}
       />
       <div className="cards-container">
@@ -69,7 +72,7 @@ function LandingPage() {
           climateData.map((climate) => (
             <ForeCast
               forecast={climate}
-              date={dates.find(({ date_id: id }) => id === selectedDateId).date_name}
+              date={dates.find(({ dateId }) => dateId === selectedDateId).dateName}
             />
           ))
         }
