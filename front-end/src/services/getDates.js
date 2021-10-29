@@ -1,15 +1,15 @@
-const API_URL = new URL('http://localhost:3001');
+const API_URL = 'https://desafio-nimbus-backend.herokuapp.com/';
 
-function all() {
+function getAll() {
   return fetch(`${API_URL}dates`).then(
     (response) => response.json(),
   ).then(({ dates }) => dates);
 }
 
-function byId(id) {
+function getById(id) {
   return fetch(`${API_URL}dates/${id}`).then(
     (response) => response.json(),
   ).then((data) => data).catch((error) => error);
 }
 
-export default { all, byId };
+export default { getAll, getById };

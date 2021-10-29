@@ -6,14 +6,16 @@ import getDistricts from '../services/getDistricts';
 import getDates from '../services/getDates';
 
 function DataProvider({ children }) {
-  const [dates, setDates] = useState([{ date_name: '', district_id: 1, date_id: 1 }]);
-  const [districts, setDistricts] = useState([{ district_id: 1 }]);
-  const [climates, setClimates] = useState([]);
+  const [dates, setDates] = useState([{ dateId: 1, dateName: '', districtId: 1 }]);
+  const [districts, setDistricts] = useState([{ districtId: 1, districtName: '', state: '' }]);
+  const [climates, setClimates] = useState([{
+    climateId: 1, climateHour: 0, climateRain: 0, dateId: 0,
+  }]);
 
   useEffect(() => {
-    getClimates.all().then((climatesData) => setClimates(climatesData));
-    getDistricts.all().then((districtsData) => setDistricts(districtsData));
-    getDates.all().then((datesData) => setDates(datesData));
+    getClimates.getAll().then((climatesData) => setClimates(climatesData));
+    getDistricts.getAll().then((districtsData) => setDistricts(districtsData));
+    getDates.getAll().then((datesData) => setDates(datesData));
   }, []);
 
   const contextValue = {

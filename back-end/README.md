@@ -1,12 +1,12 @@
 ### Informações Gerais
 
-Projeto desenvolvido durante formação em desenvolvedor Web Full Stack pela Trybe.
+Projeto desenvolvido para processo seletivo da Nimbus Meteorologia.
 
 ---
 
-# Boas vindas ao repositório do projeto Store Manager!
+# Boas vindas ao repositório de Back-End projeto!
 
-Neste projeto foi desenvolvida uma API utilizando a arquitetura MSC (Model, Service, Controller) aplicando os padrões RESTful. A API trata-se de um sistema de gerenciamento de vendas, onde é possível criar, visualizar, deletar e atualizar produtos e vendas.
+Neste projeto foi desenvolvida uma API utilizando a arquitetura MSC (Model, Service, Controller) aplicando os padrões RESTful. A API trata-se de registros de previsão de chuva onde é possível criar e visualizar as informações.
 
 Lembrando que esta aplicação corresponde aos meus esforços para melhorar minhas hard skills e soft skills, sinta-se à vontade para explorá-la! Feedbacks construtivos são sempre bem vindos!
 
@@ -17,16 +17,12 @@ Abaixo você poderá encontrar mais informações técnicas sobre este projeto.
 # Sumário
 
 - [Habilidades](#habilidades)
-- [Instruções para testar a aplicação localmente
-](#intruções-para-testar-a-aplicação-localmente)
+- [Instruções para rodar a aplicação](#instruções-para-rodar-a-aplicação)
 - [Informações do projeto](#informações-do-projeto)
   - [Linter](#linter)
-  - [Testes](#Testes)
-    - [e2e](#e2e)
-    - [unit](#unit)
-  - [Banco de Dados](#Banco-de-Dados)
+  - [Banco de Dados](#banco-de-dados)
     - [Tabelas](#tabelas)
-  - [Desenvolvimento](#Desenvolvimento)
+  - [Desenvolvimento](#desenvolvimento)
 - [Padrões e Conexões](#padrões-e-conexões)
   - [Endpoints da API](#endpoints-da-api)
   - [Mensagens de erro](#mensagens-de-erro)
@@ -37,28 +33,31 @@ Abaixo você poderá encontrar mais informações técnicas sobre este projeto.
 
 Nesse projeto, fui capaz de:
 
-- Entender o funcionamento da camada de Model;
-- Delegar responsabilidades específicas para essa camada;
-- Conectar sua aplicação com diferentes bancos de dados;
-- Estruturar uma aplicação em camadas;
-- Delegar responsabilidades específicas para cada parte do seu app;
-- Melhorar manutenibilidade e reusabilidade do seu código;
-- Entender e aplicar os padrões REST;
-- Escrever assinaturas para APIs intuitivas e facilmente entendíveis.
+- Trabalhar com a Arquitetura MSC (Model, Service, Controller)
+- Realizar queries em banco de dados relacional com MySQL
+- Conectar a aplicação com bancos de dados relacional
+- Aplicar os padrões RESTful;
 
 ---
 
-# Instruções para testar a aplicação localmente
+# Instruções para rodar a aplicação
 
-1. Faça o fork do repositório
+1. Faça o fork e o clone do repositório
 
 2. Instale as dependências do projeto
   * Instale as dependências:
     * `npm install`
 
-3. Para realizar testes locais:
-  * Comentar a linha 7 no /models/connection.js;
-  * Descomentar a linha 8 no /models/connection.js;
+3. Realize a conexão com seu banco de dados MySQL:
+  * Crie um arquivo `.env` na raíz do projeto e declare as seguintes variáveis:
+    `DB_HOST`: host do seu banco de dados
+    `DB_USER`: usuário do seu banco de dados
+    `DB_PASSWORD`: senha do seu banco de dados
+    `PORT`: porta em que a aplicação irá rodar (opicional, padrão 3001)
+  * Crie o banco de dados utilizando os comandos que estão no arquivo `mysqlBD.sql` na raíz do projeto.
+
+4. Inicialize o projeto
+  * `npm run dev`
 
 ---
 
@@ -70,68 +69,55 @@ Para garantir a qualidade do código de forma a tê-lo mais legível, de mais f�
 
 Você pode também instalar o plugin do `ESLint` no `VSCode`, basta ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
 
-## Testes
-
-### e2e
-
-Para este projeto a Trybe forneceu os testes e2e.
-
-Foi utilizado o [Jest](https://jestjs.io/docs/getting-started) e o [Frisby](https://docs.frisbyjs.com/) para fazer os testes de api.
-
-Para poder executar os testes e2e basta executar o comando `npm test` e o resultado será igual o abaixo:
-
-![Testes](./public/testejestfrisby.png)
-
-### unit
-
-Para este projetos foram desenvolvidos testes unitários para as camadas MSC.
-
-Foram utilizados o [mocha](https://mochajs.org/), [chai](https://www.chaijs.com/) e [sinon](https://sinonjs.org/releases/latest/) para escrevê-los.
-
-Para poder executar os testes unitários basta executar o comando `npm run test:mocha`.
-
 ## Banco de Dados
 
-O banco de dados utilizado é não relacional e será utilizado o MongoDB.
+O banco de dados utilizado é relacional e foi utilizado o MySQL.
 
 ### Tabelas
 
-O banco possui duas tabelas: produtos e vendas.
+O banco possui três tabelas: Dates, Districts e Climates.
 
-A tabela de produtos possui o seguinte nome: `products`
-
-Os campos da tabela `products` possuem esse formato:
+Os campos da tabela `Dates` possuem esse formato:
 
 ```json
-{ "name": "Produto Silva", "quantity": 10 }
+{ "date_id": 1, "date_name": "DD/MM", "district_id": 1 }
 ```
 
 A resposta do insert que deve retornar após a criação é parecida com essa:
 
 ```json
-{ "_id": ObjectId("5f43cbf4c45ff5104986e81d"), "name": "Produto Silva", "quantity": 10 }
+{ "dateId": 1, "dateName": "DD/MM", "districtId": 1 }
 ```
 
-(O \_id será gerado automaticamente)
+(O dateId será gerado automaticamente)
 
-A tabela de vendas possui o seguinte nome: `sales`
-
-Os campos da tabela `sales` possuem esse formato:
+Os campos da tabela `Districts` possuem esse formato:
 
 ```json
-{ "itensSold": [{ "productId": "5f43cbf4c45ff5104986e81d", "quantity": 2 }] }
+{ "district_id": 1, "district_name": "Example" }
 ```
 
 A resposta do insert que deve retornar após a criação é parecida com essa:
 
 ```json
-{
-  "_id": ObjectId("5f43cc53c45ff5104986e81e"),
-  "itensSold": [{ "productId": "5f43cbf4c45ff5104986e81d", "quantity": 2 }]
-}
+{ "districtId": 1, "districtName": "Example" }
 ```
 
-(O \_id será gerado automaticamente)
+(O districtId será gerado automaticamente)
+
+Os campos da tabela `Climates` possuem esse formato:
+
+```json
+{ "climate_id": 1, "climate_hour": 0, "climate_rain": 0.0, "date_id": 1 }
+```
+
+A resposta do insert que deve retornar após a criação é parecida com essa:
+
+```json
+{ "climateIid": 1, "climateHour": 0, "climateRain": 0.0, "dateId": 1 }
+```
+
+(O climateIid será gerado automaticamente)
 
 ## Desenvolvimento
 
@@ -141,11 +127,17 @@ Neste projeto as seguintes stacks foram utilizadas no desenvolvimento:
 
 - [Express.js](https://expressjs.com/pt-br/)
 
-- [MongoDB Node Driver](https://docs.mongodb.com/drivers/node/current/)
+- [Node MySQL 2](https://www.npmjs.com/package/mysql2)
 
 - [Joi](https://joi.dev/api/?v=17.4.2)
 
 - [Express Rescue](https://www.npmjs.com/package/express-rescue)
+
+- [Cors](https://www.npmjs.com/package/cors)
+
+- [Dotenv](https://www.npmjs.com/package/dotenv)
+
+- [Nodemon](https://www.npmjs.com/package/nodemon)
 
 ---
 
@@ -153,7 +145,7 @@ Neste projeto as seguintes stacks foram utilizadas no desenvolvimento:
 
 ## Endpoints da API
 
-### http://localhost:3000/products
+### https://desafio-nimbus-backend.herokuapp.com/dates
 
 - Método GET:
 
@@ -161,11 +153,11 @@ O retorno da API será:
 
 ```json
 {
-  products: [
+  dates: [
     {
-      "_id": "5f43a7ca92d58904914656b6",
-      "name": "Produto do Batista",
-      "quantity": 100
+      "dateId": 1,
+      "dateName": "DD/MM",
+      "districtId": 1
     },
     ...
   ],
@@ -178,25 +170,25 @@ O endpoint deve receber a seguinte estrutura:
 
 ```json
 {
-  "name": "product_name",
-  "quantity": "product_quantity"
+  "dateName": "product_name",
+  "districtId": "product_quantity"
 }
 ```
 
-  - `name` deve ser uma _string_ com mais de 5 caracteres;
-  - `quantity` deve ser um número inteiro maior que 0;
+  - `dateName` deve ser uma _string_ com 5 caracteres;
+  - `districtId` deve ser um ID existente de um bairro cadastrado na tabela Districts.
 
-O retorno da API de um produto cadastrado com sucesso será:
+O retorno da API em caso de sucesso será:
 
 ```json
 {
-  "_id": "5f43a7ca92d58904914656b6",
-  "name": "Produto do Batista",
-  "quantity": 100
+  "dateId": 1,
+  "dateName": "DD/MM",
+  "districtId": 1
 }
 ```
 
-### http://localhost:3000/products/:id
+### https://desafio-nimbus-backend.herokuapp.com/dates/:id
 
 - Método GET
 
@@ -204,49 +196,13 @@ O retorno da API em caso de sucesso será:
 
 ```json
 {
-  "_id": "5f43a7ca92d58904914656b6",
-  "name": "Produto do Batista",
-  "quantity": 100
+  "dateId": 1,
+  "dateName": "DD/MM",
+  "districtId": 1
 }
 ```
 
-- Método PUT
-
-O endpoint deve receber a seguinte estrutura:
-
-```json
-{
-  "name": "product_name",
-  "quantity": "product_quantity"
-}
-```
-
-  - `name` deve ser uma _string_ com mais de 5 caracteres;
-  - `quantity` deve ser um número inteiro maior que 0;
-
-O retorno da API de um produto cadastrado com sucesso será:
-
-```json
-{
-  "_id": "5f43a7ca92d58904914656b6",
-  "name": "Produto do Batista",
-  "quantity": 100
-}
-```
-
-- Método DELETE
-
-O retorno da API em caso de sucesso será:
-
-```json
-{
-  "_id": "5f43a7ca92d58904914656b6",
-  "name": "Produto do Batista",
-  "quantity": 100
-}
-```
-
-### http://localhost:3000/sales
+### https://desafio-nimbus-backend.herokuapp.com/districts
 
 - Método GET
 
@@ -254,16 +210,11 @@ O retorno da API será:
 
 ```json
 {
-  sales: [
+  districts: [
     {
-      "_id": "5f43a7ca92d58904914656b6",
-      "itensSold": [
-        {
-          "productId": "1f33a7ca92d58904914655a2",
-          "quantity": 10,
-        },
-        ...
-      ],
+      "districtId":5,
+      "districtName":"Copacabana",
+      "state":"RJ"
     },
     ...
   ],
@@ -277,31 +228,28 @@ O endpoint deve receber a seguinte estrutura:
 ```json
 [
   {
-    "productId": "1f33a7ca92d58904914655a2",
-    "quantity": 10,
-  },
+    "districtName":"Copacabana",
+    "state":"RJ"
+  }
   ...
 ]
 ```
 
-  - `quantity` deve ser um número inteiro maior que 0 e deve ser menor ou igual a quantidade disponível do produto;
+  - `districtName` e `state` devem ser strings.
 
-O retorno da API de uma venda cadastrada com sucesso será:
+O retorno da API em caso de sucesso será:
 
 ```json
 {
-  "_id": "5f43a7ca92d58904914656b6",
-  "itensSold": [
-    {
-      "productId": "1f33a7ca92d58904914655a2",
-      "quantity": 10,
-    },
-    ...
-  ],
+  {
+    "districtId":5,
+    "districtName":"Copacabana",
+    "state":"RJ"
+  }
 }
 ```
 
-### http://localhost:3000/sales/:id
+### https://desafio-nimbus-backend.herokuapp.com/districts/:id
 
 - Método GET
 
@@ -309,63 +257,75 @@ O retorno da API em caso de sucesso será:
 
 ```json
 {
-  "_id": "5f43a7ca92d58904914656b6",
-  "itensSold": [
+  "districtId":5,
+  "districtName":"Copacabana",
+  "state":"RJ"
+}
+```
+
+### https://desafio-nimbus-backend.herokuapp.com/climates
+
+- Método GET
+
+O retorno da API será:
+
+```json
+{
+  climates: [
     {
-      "productId": "1f33a7ca92d58904914655a2",
-      "quantity": 10,
+      "climateId": 5,
+      "climateHour": 0,
+      "climateRain": 0.1,
+      "dateId": 85
     },
     ...
   ],
 }
 ```
 
-- Método PUT
+- Método POST
 
 O endpoint deve receber a seguinte estrutura:
 
 ```json
 [
   {
-    "productId": "1f33a7ca92d58904914655a2",
-    "quantity": 10,
-  },
+    "climateHour": 0,
+    "climateRain": 0.1,
+    "dateId": 85
+  }
   ...
 ]
 ```
 
-  - `quantity` deve ser um número inteiro maior que 0 e deve ser menor ou igual a quantidade disponível do produto;
-
-
-O retorno da API de uma venda cadastrada com sucesso será:
-
-```json
-{
-  "_id": "5f43a7ca92d58904914656b6",
-  "itensSold": [
-    {
-      "productId": "1f33a7ca92d58904914655a2",
-      "quantity": 10,
-    },
-    ...
-  ],
-}
-```
-
-- Método DELETE
+  - `climateHour` deve ser um número inteiro entre 0 e 23;
+  - `climateRain` deve ser um número maior que 0;
+  - `dateId` deve ser o ID da uma data cadastrada na tabela `Dates`.
 
 O retorno da API em caso de sucesso será:
 
 ```json
 {
-  "_id": "5f43a7ca92d58904914656b6",
-  "itensSold": [
-    {
-      "productId": "1f33a7ca92d58904914655a2",
-      "quantity": 10,
-    },
-    ...
-  ],
+  {
+    "climateId": 5,
+    "climateHour": 0,
+    "climateRain": 0.1,
+    "dateId": 85
+  }
+}
+```
+
+### https://desafio-nimbus-backend.herokuapp.com/districts/:id
+
+- Método GET
+
+O retorno da API em caso de sucesso será:
+
+```json
+{
+  "districtId":5,
+  "districtName":"Copacabana",
+  "state":"RJ"
 }
 ```
 
