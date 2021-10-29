@@ -2,7 +2,7 @@
 
 Projeto desenvolvido para processo seletivo da Nimbus Meteorologia.
 
-[Aplicação](https://desafio-nimbus-frontend.herokuapp.com/)
+[Aplicação](https://desafionimbus-frontend.herokuapp.com/)
 
 ---
 
