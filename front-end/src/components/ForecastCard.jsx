@@ -39,8 +39,8 @@ function ForecastCard({ forecast, date }) {
 
 ForecastCard.propTypes = {
   forecast: PropTypes.shape({
-    climateHour: PropTypes.string,
-    climateRain: PropTypes.string,
+    climateHour: PropTypes.number,
+    climateRain: PropTypes.number,
   }).isRequired,
   date: PropTypes.string.isRequired,
 };

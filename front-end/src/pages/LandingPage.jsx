@@ -76,6 +76,7 @@ function LandingPage() {
             <ForeCast
               forecast={climate}
               date={foreCastDate}
+              key={climate.climateId}
             />
           ))
         }
