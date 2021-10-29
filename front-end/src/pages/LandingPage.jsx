@@ -12,7 +12,7 @@ function LandingPage() {
   const [climateData, setClimateData] = useState(climates);
 
   const selectDistricData = districts.map(
-    ({ districtName: name, districtId: id }) => ({ name, id }),
+    ({ districtName, state, districtId: id }) => ({ name: `${districtName}/${state}`, id }),
   );
   const { districtId: selectDistrictValue } = districts.find(
     ({ districtId }) => districtId === selectedDistrictId,
