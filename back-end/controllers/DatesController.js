@@ -3,9 +3,9 @@ const { OK_STATUS } = require('../helpers/HTTPCodes');
 
 const create = async (req, res, next) => {
   const { dateName, districtId } = req.body;
-  const { id, err } = await DatesService.create({ dateName, districtId });
+  const { dateId, err } = await DatesService.create({ dateName, districtId });
   if (err) return next(err);
-  return res.status(OK_STATUS).json({ id, dateName, districtId });
+  return res.status(OK_STATUS).json({ dateId, dateName, districtId });
 };
 
 const getAll = async (_req, res) => {

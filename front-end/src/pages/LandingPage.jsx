@@ -6,7 +6,7 @@ import './LandingPage.css';
 
 function LandingPage() {
   const { dates, climates, districts } = useContext(DataContext);
-  const [selectedDistrictId, setSelectedDistrictId] = useState(1);
+  const [selectedDistrictId, setSelectedDistrictId] = useState(districts[0].district_id);
   const [selectableDates, setSelectableDates] = useState([]);
   const [selectedDateId, setSelectedDateId] = useState(1);
   const [climateData, setClimateData] = useState([]);
