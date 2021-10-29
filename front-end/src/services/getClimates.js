@@ -1,4 +1,4 @@
-const API_URL = new URL('http://localhost:3001');
+const API_URL = 'https://desafio-nimbus-backend.herokuapp.com/';
 
 function getAll() {
   return fetch(`${API_URL}climates`).then(
